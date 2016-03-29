@@ -57,6 +57,8 @@ class Cliente():
             #mostrar informacoes para esta locacao
             resultado = resultado + ' '+cada.getFilme().getTitulo()+' '+ str(estaQuantidade)+'\n'
 
+            totalQuantidade =  totalQuantidade + estaQuantidade
+
         #adicionar rodape do relatorio
         resultado = resultado + "Quantia devida é "+ str(totalQuantidade)+"\n"
         resultado = resultado + 'Voce ganhou '+ str(pontosFrequenciaAlocacao)+' pontos de locacao.'
