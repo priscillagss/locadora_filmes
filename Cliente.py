@@ -20,6 +20,22 @@ class Cliente():
         self._alocacoes.append(arg)
     def getNome(self):
         return self._nome
+    def QuantidadePara(self, alocacao):
+        resultado = 0
+    
+        if cada.getFilme().getPrecoCodigo() == REGULAR:
+            estaQuantidade = estaQuantidade + 2
+        if cada.getDiasAlocados()>2:
+            estaQuantidade = estaQuantidade + (cada.getDiasAlocados()-2)*1.5
+        elif cada.getFilme().getPrecoCodigo() == NOVA_RELEASE:
+            estaQuantidade = estaQuantidade + 3
+        elif cada.getFilme().getPrecoCodigo() == CRIANCAS:
+            estaQuantidade = estaQuantidade + 1.5
+            if cada.getDiasAlocados()>3:
+                estaQuantidade = estaQuantidade + (cada.getDiasAlocados()-3)*1.5
+
+        return resultado
+
     def Expresao(self):
         totalQuantidade = 0.0
         pontosFrequenciaAlocacao = 0
@@ -28,21 +44,11 @@ class Cliente():
 
         #while(alocacoes):
         for cada in alocacoes:
-            estaQuantidade = 0.0
+            estaQuantidade = self.QuantidadePara(cada)
             #cada = next(alocacoes) #cada tipo alocacao
             #cada dever ser de tipo alocacao
             #Determinar valores para cada linha
-            if cada.getFilme().getPrecoCodigo() == REGULAR:
-                estaQuantidade = estaQuantidade + 2
-                if cada.getDiasAlocados()>2:
-                    estaQuantidade = estaQuantidade + (cada.getDiasAlocados()-2)*1.5
-            elif cada.getFilme().getPrecoCodigo() == NOVA_RELEASE:
-                estaQuantidade = estaQuantidade + 3
-            elif cada.getFilme().getPrecoCodigo() == CRIANCAS:
-                estaQuantidade = estaQuantidade + 1.5
-                if cada.getDiasAlocados()>3:
-                    estaQuantidade = estaQuantidade + (cada.getDiasAlocados()-3)*1.5
-
+            
             #adicionar pontos de locador frequente
             pontosFrequenciaAlocacao = pontosFrequenciaAlocacao + 1
             #adicionar bonus para uma locação de dois dias para lançamentos
