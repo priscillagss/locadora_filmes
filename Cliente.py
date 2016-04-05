@@ -25,20 +25,7 @@ class c_Cliente():
         return self._nome
     
     def f_calculaValor(self, p_alocacao):
-        v_valorFilme = 0
-    
-        if p_alocacao.f_obterFilme().f_obterPrecoCodigo() == REGULAR:
-            v_valorFilme += 2
-        if p_alocacao.f_obterDiasAlocados()>2:
-            v_valorFilme += (p_alocacao.f_obterDiasAlocados()-2)*1.5
-        elif p_alocacao.f_obterFilme().f_obterPrecoCodigo() == NOVA_RELEASE:
-            v_valorFilme += 3
-        elif p_alocacao.f_obterFilme().f_obterPrecoCodigo() == CRIANCAS:
-            v_valorFilme += 1.5
-            if p_alocacao.f_obterDiasAlocados()>3:
-                v_valorFilme += (p_alocacao.f_obterDiasAlocados()-3)*1.5
-
-        return v_valorFilme
+        return p_alocacao.getCharge()
 
     def f_Expresao(self):
         v_totalAPagar = 0.0
