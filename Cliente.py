@@ -38,11 +38,8 @@ class c_Cliente():
             v_valorIndividual = self.f_calculaValor(cada_alocacao)
             
             #adicionar pontos de locador frequente
-            v_pontosFrequenciaAlocacao += 1
-            #adicionar bonus para uma locação de dois dias para lançamentos
-            if cada_alocacao.f_obterFilme().f_obterPrecoCodigo() == c_Filme.NOVA_RELEASE and cada_alocacao.f_obterDiasAlocados()>1:
-                v_pontosFrequenciaAlocacao += 1
-            #mostrar informacoes para esta locacao
+            v_pontosFrequenciaAlocacao += self.obterTotalPontosAlocacao(cada_alocacao)
+            
             v_resultado += " " + cada_alocacao.f_obterFilme().f_obterTitulo()+ " " + str(v_valorIndividual) + "\n"
 
             v_totalAPagar += v_valorIndividual
@@ -52,6 +49,20 @@ class c_Cliente():
         v_resultado += "Voce ganhou " + str(v_pontosFrequenciaAlocacao)+ " pontos de locacao."
 
         return v_resultado
+
+    def obterTotalPontosAlocacao(self, p_alocacao):
+        pontos = 1
+
+        if p_alocacao.f_obterFilme().f_obterPrecoCodigo() == c_Filme.NOVA_RELEASE and p_alocacao.f_obterDiasAlocados() > 1:
+            pontos += 1
+        
+        else:
+            pontos
+        
+        print pontos
+
+        return pontos
+
 
 if __name__ == '__main__':
     o_meuCliente = c_Cliente('Ruben')
