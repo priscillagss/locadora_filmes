@@ -25,21 +25,12 @@ class c_Cliente():
         return self._nome
 
     def f_Expresao(self):
-        #   v_totalAPagar = 0.0
-        # v_pontosFrequenciaAlocacao = 0
         v_alocacoes = iter(self._alocacoes)
         v_resultado = 'Registro de Locação para : '+ self.f_obterNomeCliente()+'\n'
 
-        #while(alocacoes):
         for cada_alocacao in v_alocacoes:
-            #v_valorIndividual = self.f_calculaValor(cada_alocacao)
-            
-            #adicionar pontos de locador frequente
-            #v_pontosFrequenciaAlocacao += self.obterTotalPontosAlocacao(cada_alocacao)
             
             v_resultado += " " + cada_alocacao.f_obterFilme().f_obterTitulo()+ " " + str(cada_alocacao.f_getCharge()) + "\n"
-
-            #v_totalAPagar += v_valorIndividual
 
         #adicionar rodape do relatorio
         v_resultado += "Quantia devida é "+ str(self.f_obterTotalCharge())+"\n"
