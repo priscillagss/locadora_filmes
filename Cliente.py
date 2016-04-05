@@ -23,45 +23,48 @@ class c_Cliente():
     
     def f_obterNomeCliente(self):
         return self._nome
-    
-    def f_calculaValor(self, p_alocacao):
-        return p_alocacao.getCharge()
 
     def f_Expresao(self):
-        v_totalAPagar = 0.0
-        v_pontosFrequenciaAlocacao = 0
+        #   v_totalAPagar = 0.0
+        # v_pontosFrequenciaAlocacao = 0
         v_alocacoes = iter(self._alocacoes)
         v_resultado = 'Registro de Locação para : '+ self.f_obterNomeCliente()+'\n'
 
         #while(alocacoes):
         for cada_alocacao in v_alocacoes:
-            v_valorIndividual = self.f_calculaValor(cada_alocacao)
+            #v_valorIndividual = self.f_calculaValor(cada_alocacao)
             
             #adicionar pontos de locador frequente
-            v_pontosFrequenciaAlocacao += self.obterTotalPontosAlocacao(cada_alocacao)
+            #v_pontosFrequenciaAlocacao += self.obterTotalPontosAlocacao(cada_alocacao)
             
-            v_resultado += " " + cada_alocacao.f_obterFilme().f_obterTitulo()+ " " + str(v_valorIndividual) + "\n"
+            v_resultado += " " + cada_alocacao.f_obterFilme().f_obterTitulo()+ " " + str(cada_alocacao.f_getCharge()) + "\n"
 
-            v_totalAPagar += v_valorIndividual
+            #v_totalAPagar += v_valorIndividual
 
         #adicionar rodape do relatorio
-        v_resultado += "Quantia devida é "+ str(v_totalAPagar)+"\n"
-        v_resultado += "Voce ganhou " + str(v_pontosFrequenciaAlocacao)+ " pontos de locacao."
+        v_resultado += "Quantia devida é "+ str(self.f_obterTotalCharge())+"\n"
+        v_resultado += "Voce ganhou " + str(self.getTotalPontosFrequenciaAlocacao())+ " pontos de locacao."
 
         return v_resultado
 
-    def obterTotalPontosAlocacao(self, p_alocacao):
-        pontos = 1
+    def f_obterTotalCharge(self):
+        v_total = 0.0
+        v_alocacoes = iter(self._alocacoes)
+    
+        for cada_alocacao in v_alocacoes:
+            v_total += cada_alocacao.f_getCharge()
 
-        if p_alocacao.f_obterFilme().f_obterPrecoCodigo() == c_Filme.NOVA_RELEASE and p_alocacao.f_obterDiasAlocados() > 1:
-            pontos += 1
-        
-        else:
-            pontos
-        
-        print pontos
+        return v_total
 
-        return pontos
+
+    def getTotalPontosFrequenciaAlocacao(self):
+        v_total_pontos = 0.0
+        v_alocacoes = iter(self._alocacoes)
+    
+        for cada_alocacao in v_alocacoes:
+            v_total_pontos += cada_alocacao.f_obterPontosFrequenciaPorCadaAlocacao()
+
+        return v_total_pontos
 
 
 if __name__ == '__main__':

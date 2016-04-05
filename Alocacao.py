@@ -12,7 +12,7 @@ class c_Alocacao:
     def f_obterFilme(self):
         return self._filme
 
-    def getCharge(self):
+    def f_getCharge(self):
         v_valorFilme = 0
         
         if self.f_obterFilme().f_obterPrecoCodigo() == c_Filme.REGULAR:
@@ -28,6 +28,17 @@ class c_Alocacao:
 
         return v_valorFilme
 
+
+    def f_obterPontosFrequenciaPorCadaAlocacao(self):
+        v_pontos = 1
+        
+        if self.f_obterFilme().f_obterPrecoCodigo() == c_Filme.NOVA_RELEASE and self.f_obterDiasAlocados() > 1:
+            v_pontos += 1
+        
+        else:
+            v_pontos
+        
+        return v_pontos
 
 if __name__ == '__main__':
     o_minhaAlocacao = c_Alocacao()
